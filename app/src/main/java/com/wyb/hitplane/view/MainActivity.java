@@ -1,7 +1,9 @@
-package com.wyb.hitplane;
+package com.wyb.hitplane.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.wyb.hitplane.R;
 
 public class MainActivity extends AppCompatActivity {
 
