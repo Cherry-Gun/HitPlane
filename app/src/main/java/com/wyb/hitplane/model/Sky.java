@@ -11,20 +11,23 @@ import com.wyb.hitplane.R;
 
 public class Sky extends GameObject{
 
-    public int position;
     private Bitmap background;
-    private Paint paint;
 
     public Sky(Context context, Paint paint) {
+        super(context, paint);
         background = BitmapFactory.decodeResource(context.getResources(), R.mipmap.background);
-        this.paint = paint;
     }
 
     @Override
     public void draw(Canvas canvas) {
         //背景坐标的位移
-        position += 10;
-        int x = position % background.getHeight();
+        if (y >= 10000) {   //当飞行距离超过10000
+            y += 20;        //将加速飞行
+        } else {            //否则
+            y += 10;        //原速飞行
+        }
+
+        float x = y % background.getHeight();  //y是飞机图片的高度，对背景的高度求余等于飞机图片的一半
 
         canvas.drawBitmap(background, 0, x, paint);
         canvas.drawBitmap(background, 0, -(background.getHeight() - x), paint);

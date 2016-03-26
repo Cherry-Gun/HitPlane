@@ -13,14 +13,24 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.wyb.hitplane.R;
+import com.wyb.hitplane.model.Enemy;
+import com.wyb.hitplane.model.EnemyDismissListener;
 import com.wyb.hitplane.model.Plane;
 import com.wyb.hitplane.model.Sky;
 
-public class GameView extends View{
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.Vector;
 
-    private Sky sky;        //天空（背景）
-    private Plane plane;    //玩家（飞机）
-    private Paint paint;    //画笔
+public class GameView extends View implements EnemyDismissListener {
+
+    private Sky sky;                //天空（背景）
+    private Plane plane;            //玩家（飞机）
+    private List<Enemy> enemies;    //敌机
+    private List<Enemy> passed;     //摧毁的敌机
+    private Paint paint;            //画笔
+    private Random random;
 
     private Handler handler = new Handler() {
         @Override
@@ -46,16 +56,36 @@ public class GameView extends View{
     }
 
     private void init(Context context) {
-        paint = new Paint();
-        sky = new Sky(context, paint);
-        plane = new Plane(context, paint);
+        paint = new Paint();                //画笔
+        sky = new Sky(context, paint);      //天空
+        plane = new Plane(context, paint);  //玩家
+        enemies = new Vector<>();           //敌机
+        passed = new ArrayList<>();         //摧毁的飞机
+        random = new Random();
         handler.sendEmptyMessageDelayed(0, 100);   //开始飞
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        sky.draw(canvas);
-        plane.draw(canvas);
+
+        sky.draw(canvas);                   //绘制天空背景
+
+        plane.draw(canvas);                 //绘制玩家的飞机
+
+        if (random.nextInt(100) < 8) {      //绘制敌机 ---> 8%的概率产生一个敌机
+            Enemy enemy = new Enemy(getContext(), paint, getWidth(), getHeight());
+            enemy.setEnemyDismissListener(this);
+            enemies.add(enemy);
+        }
+        if (enemies.size() > 4) {       //敌机超过4个
+            enemies.get(3).bomb();      //就把第三个给炸了
+        }
+        enemies.removeAll(passed);
+        passed.clear();
+        for (Enemy item : enemies) {
+            item.draw(canvas);
+        }
+
     }
 
     @Override
@@ -66,5 +96,15 @@ public class GameView extends View{
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onEnemyPassed(Enemy enemy) {
+        passed.add(enemy);
+    }
+
+    @Override
+    public void onEnemyBomb(Enemy enemy) {
+        passed.add(enemy);
     }
 }

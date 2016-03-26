@@ -11,15 +11,12 @@ import com.wyb.hitplane.R;
 
 public class Plane extends GameObject {
 
-    public float x;
-    public float y;
     private Bitmap[] plane = new Bitmap[2];
     private int status = 0;
     private int count = 0;
-    private Paint paint;
 
     public Plane(Context context, Paint paint) {
-        this.paint = paint;
+        super(context, paint);
         plane[0] = BitmapFactory.decodeResource(context.getResources(), R.mipmap.plane1);
         plane[1] = BitmapFactory.decodeResource(context.getResources(), R.mipmap.plane2);
     }
@@ -39,6 +36,5 @@ public class Plane extends GameObject {
         //控制的点从飞机图片的左上角（x=0, y=0）换到了飞机图片的中心
         canvas.drawBitmap(plane[status], x - plane[status].getWidth() / 2, y - plane[status].getHeight() / 2, paint);
         count++;
-
     }
 }
