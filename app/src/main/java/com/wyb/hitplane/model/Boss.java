@@ -15,6 +15,7 @@ public class Boss extends Enemy{
     public Boss(Context context, Paint paint, float width, float height) {
         super(context, paint, width, height);
         v = 8;
+        cost = 50;
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.wyb.hitplane.view;
 
-
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,7 +10,6 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.wyb.hitplane.model.Boss;
 import com.wyb.hitplane.model.Bullet;
 import com.wyb.hitplane.model.Enemy;
@@ -33,6 +31,7 @@ public class GameView extends View implements EnemyDismissListener {
     private Paint paint;            //画笔
     private Random random;
     private long lastBossTime;
+    private int score = 0;          //分数
 
     private Handler handler = new Handler() {
         @Override
@@ -57,9 +56,14 @@ public class GameView extends View implements EnemyDismissListener {
         init(context);
     }
 
+    public int getScore() {
+        return score;
+    }
+
     private void init(Context context) {
         paint = new Paint();                //画笔
         paint.setColor(Color.RED);
+        paint.setTextSize(80);
         sky = new Sky(context, paint);      //天空
         plane = new Plane(context, paint);  //玩家
         enemies = new Vector<>();           //敌机
@@ -81,7 +85,8 @@ public class GameView extends View implements EnemyDismissListener {
             enemy.setEnemyDismissListener(this);
             enemies.add(enemy);
         }
-        canvas.drawText(sky.y + "", 10, 10, paint);
+        score += 2;
+        canvas.drawText("分数: " + score, 10, 20, paint);
         if(System.currentTimeMillis() - lastBossTime >= 10000) {  //行驶了10000
             Boss boss = new Boss(getContext(), paint, getWidth(), getHeight());
             boss.setEnemyDismissListener(this);
@@ -140,6 +145,7 @@ public class GameView extends View implements EnemyDismissListener {
         synchronized (passed) {
             passed.add(enemy);
         }
+        score -= 10;
     }
 
     @Override
@@ -147,6 +153,7 @@ public class GameView extends View implements EnemyDismissListener {
         synchronized (passed) {
             passed.add(enemy);
         }
+        score += enemy.getCost();
     }
 
 }

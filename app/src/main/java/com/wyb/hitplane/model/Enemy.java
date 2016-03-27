@@ -13,6 +13,7 @@ import java.util.Random;
 public class Enemy extends GameObject{
 
     protected int v = 5;       //速度
+    protected int cost;
 
     private EnemyDismissListener lEnemyDismiss;
     private float height;
@@ -25,6 +26,7 @@ public class Enemy extends GameObject{
         y = 0 - getBitmap().getHeight();  //敌机都从最顶部来，切自上而下
         x = random.nextInt((int) (width - getBitmap().getWidth()));  //敌机从最顶部的自左至右随机位置出现，但不会出现半个敌机身子（都放在背景布局里）
         v = random.nextInt(13) + 3;  //[3~11)  //给速度随机值一个范围
+        cost = v * 2;
     }
 
     @Override
@@ -54,6 +56,10 @@ public class Enemy extends GameObject{
 
     public void hited() {
         bomb();
+    }
+
+    public int getCost() {
+        return cost;
     }
 
     public void bomb() {    //爆炸的方法就是
