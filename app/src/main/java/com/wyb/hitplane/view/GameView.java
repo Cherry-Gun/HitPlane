@@ -2,26 +2,25 @@ package com.wyb.hitplane.view;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.wyb.hitplane.R;
+import com.wyb.hitplane.model.Bullet;
 import com.wyb.hitplane.model.Enemy;
 import com.wyb.hitplane.model.EnemyDismissListener;
 import com.wyb.hitplane.model.Plane;
 import com.wyb.hitplane.model.Sky;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Vector;
+
 
 public class GameView extends View implements EnemyDismissListener {
 
@@ -92,16 +91,34 @@ public class GameView extends View implements EnemyDismissListener {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 for (Enemy item : enemies) {
-                    if (item.getRect().contains(event.getX(), event.getY())) {  //在屏幕上按下敌机
-                        item.bomb();                                            //敌机爆炸
-                    }
+//                    if (item.getRect().contains(event.getX(), event.getY())) {  //在屏幕上按下敌机
+//                        item.bomb();                                            //敌机爆炸
+//                    }
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
                 plane.move(event.getX(), event.getY());
+                for (Enemy item : enemies) {  //实施打击！ TODO 修改只有玩家移动的时候子弹才能发挥作用
+                    check(item);
+                }
                 break;
         }
         return true;
+    }
+
+    private void check(Enemy enemy) {
+        RectF enemyRect = enemy.getRect();          //得到敌机的图像范围
+        RectF planeRect = plane.getRect();          //得到玩家的图像范围
+        if (enemyRect.intersect(planeRect)) {       //两个图像范围有重合（玩家与敌机相撞）
+            enemy.bomb();                           //敌机爆炸
+            //TODO 玩家此时相当于无敌模式，不合情理
+        }
+        for (Bullet bullet : plane.bullets) {
+            RectF bulletRect = bullet.getRect();    //得到子弹的图像范围
+            if (enemyRect.intersect(bulletRect)) {  //两个图象范围有重合（子弹打到敌人）
+                enemy.bomb();                       //敌机爆炸
+            }
+        }
     }
 
     @Override

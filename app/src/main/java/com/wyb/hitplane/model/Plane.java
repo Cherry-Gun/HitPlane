@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.RectF;
 
 import com.wyb.hitplane.R;
 
@@ -19,9 +20,10 @@ public class Plane extends GameObject implements BulletDismissListener {
     private int status = 0;
     private int count = 0;
 
-    private List<Bullet> bullets = new Vector<>();
+    public List<Bullet> bullets = new Vector<>();
     private List<Bullet> passed = new ArrayList<>();
     private Context context;
+    private RectF rect = new RectF();
 
     public Plane(Context context, Paint paint) {
         super(context, paint);
@@ -76,6 +78,15 @@ public class Plane extends GameObject implements BulletDismissListener {
         synchronized (passed) {
             passed.add(bullet);
         }
+    }
+
+    public RectF getRect() {
+        rect.left = x - plane[status].getWidth() / 2;
+        rect.top = y - plane[status].getHeight() / 2;
+        rect.right = x + plane[status].getWidth() / 2;
+        rect.bottom = y + plane[status].getHeight() / 2;
+
+        return rect;
     }
 
 }

@@ -1,22 +1,21 @@
 package com.wyb.hitplane.model;
 
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-
 import com.wyb.hitplane.R;
-
 import java.util.Random;
+
 
 public class Enemy extends GameObject{
 
     private Bitmap[] enemy = new Bitmap[6];
     private int status = 0;
     private int v = 5;       //速度
+    private RectF rect = new RectF();
 
     private EnemyDismissListener lEnemyDismiss;
     private float height;
@@ -40,7 +39,7 @@ public class Enemy extends GameObject{
     @Override
     public void draw(Canvas canvas) {
         y += v;
-        if (y > height) {       //飞机飞出了天空
+        if (y > height) {       //敌机飞出了天空
             onEnemyPassed();    //就消失
         }
         canvas.drawBitmap(enemy[status], x, y, paint);
