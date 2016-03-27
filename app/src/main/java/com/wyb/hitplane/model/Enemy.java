@@ -67,13 +67,13 @@ public class Enemy extends GameObject{
         }
     }
 
-    private void onEnemyPassed() {
+    protected void onEnemyPassed() {
         if (lEnemyDismiss != null) {
             lEnemyDismiss.onEnemyPassed(this);
         }
     }
 
-    private void onEnemyBomb() {
+    protected void onEnemyBomb() {
         if (lEnemyDismiss != null) {
             lEnemyDismiss.onEnemyBomb(this);
         }

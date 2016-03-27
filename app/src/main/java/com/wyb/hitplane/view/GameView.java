@@ -77,11 +77,10 @@ public class GameView extends View implements EnemyDismissListener {
             enemy.setEnemyDismissListener(this);
             enemies.add(enemy);
         }
-        if (enemies.size() > 4) {       //敌机超过4个
-            enemies.get(3).bomb();      //就把第三个给炸了
+        synchronized (passed) {
+            enemies.removeAll(passed);
+            passed.clear();
         }
-        enemies.removeAll(passed);
-        passed.clear();
         for (Enemy item : enemies) {
             item.draw(canvas);
         }
@@ -91,7 +90,14 @@ public class GameView extends View implements EnemyDismissListener {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_MOVE :
+            case MotionEvent.ACTION_DOWN:
+                for (Enemy item : enemies) {
+                    if (item.getRect().contains(event.getX(), event.getY())) {  //在屏幕上按下敌机
+                        item.bomb();                                            //敌机爆炸
+                    }
+                }
+                break;
+            case MotionEvent.ACTION_MOVE:
                 plane.move(event.getX(), event.getY());
                 break;
         }
@@ -100,11 +106,16 @@ public class GameView extends View implements EnemyDismissListener {
 
     @Override
     public void onEnemyPassed(Enemy enemy) {
-        passed.add(enemy);
+        synchronized (passed) {
+            passed.add(enemy);
+        }
     }
 
     @Override
     public void onEnemyBomb(Enemy enemy) {
-        passed.add(enemy);
+        synchronized (passed) {
+            passed.add(enemy);
+        }
     }
+
 }
