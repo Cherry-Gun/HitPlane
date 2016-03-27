@@ -10,7 +10,7 @@ import com.wyb.hitplane.R;
 
 public class Boss extends Enemy{
 
-    private int blood = 25;
+    private int blood = 10;
 
     public Boss(Context context, Paint paint, float width, float height) {
         super(context, paint, width, height);

@@ -38,4 +38,12 @@ public abstract class GameObject {
         return rect;
     }
 
+    public int getWidth() {
+        return getBitmap().getWidth();
+    }
+
+    public int getHeight() {
+        return getBitmap().getHeight();
+    }
+
 }

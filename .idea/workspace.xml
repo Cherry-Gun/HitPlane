@@ -1616,16 +1616,18 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/EnemyDismissListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/BulletDissmissListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/BulletDismissListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/GameObject.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Bullet.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Sky.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/GameListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Boss.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Enemy.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Plane.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/GameObject.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/view/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Bullet.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Boss.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/view/GameView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Plane.java" />
       </list>
     </option>
   </component>
@@ -1661,7 +1663,16 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="ProjectPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="HitPlane" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
@@ -1773,6 +1784,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Application\Android\AndroidStudioProjects\HitPlane\app\src\main\assets" />
+      <recent name="D:\Application\Android\AndroidStudioProjects\HitPlane\app\src\main\res\raw" />
       <recent name="D:\Application\Android\AndroidStudioProjects\HitPlane\app\src\main\res\mipmap-hdpi" />
     </key>
   </component>
@@ -1949,7 +1962,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1359" y="0" width="1692" height="1017" extended-state="1" />
+    <frame x="1359" y="0" width="1692" height="1017" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2005,8 +2018,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1202#1428#0" expanded="true" />
-            <element signature="e#1427#1428#0" expanded="true" />
+            <element signature="e#1342#1568#0" expanded="true" />
+            <element signature="e#1567#1568#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2043,8 +2056,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1202#1428#0" expanded="true" />
-            <element signature="e#1427#1428#0" expanded="true" />
+            <element signature="e#1342#1568#0" expanded="true" />
+            <element signature="e#1567#1568#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2065,24 +2078,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19277108">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding>
-            <element signature="e#258#276#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/BulletDismissListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/EnemyDismissListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2096,30 +2091,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Boss.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="2" selection-end-line="32" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Bullet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="25" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1077#1078#0" expanded="true" />
-            <element signature="e#1122#1123#0" expanded="true" />
-            <element signature="e#1151#1152#0" expanded="true" />
-            <element signature="e#1183#1184#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2137,17 +2108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding>
-            <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#705#706#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Sky.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2159,38 +2119,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/view/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/../../SDK/sources/android-23/android/view/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3325301">
+          <caret line="10876" column="21" selection-start-line="10876" selection-start-column="21" selection-end-line="10876" selection-end-column="21" />
+          <folding>
+            <element signature="e#427590#427591#0" expanded="false" />
+            <element signature="e#427627#427628#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/GameObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="39" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
+          <folding>
+            <element signature="e#668#669#0" expanded="true" />
+            <element signature="e#705#706#0" expanded="true" />
+            <element signature="e#943#944#0" expanded="true" />
+            <element signature="e#988#989#0" expanded="true" />
+            <element signature="e#1018#1019#0" expanded="true" />
+            <element signature="e#1064#1065#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/view/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5301205">
           <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Plane.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/BulletDismissListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="21" selection-start-line="43" selection-start-column="21" selection-end-line="43" selection-end-column="21" />
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38535646">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21937843">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Boss.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
           <folding>
-            <element signature="e#3057#3183#0" expanded="true" />
-            <element signature="e#3182#3183#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/view/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3566265">
-          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="148" column="46" selection-start-line="148" selection-start-column="46" selection-end-line="148" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1202#1428#0" expanded="true" />
-            <element signature="e#1427#1428#0" expanded="true" />
-            <element signature="e#1882#1883#0" expanded="true" />
-            <element signature="e#1911#1912#0" expanded="true" />
-            <element signature="e#2096#2097#0" expanded="true" />
-            <element signature="e#2124#2125#0" expanded="true" />
+            <element signature="e#1342#1568#0" expanded="true" />
+            <element signature="e#1567#1568#0" expanded="true" />
+            <element signature="e#2611#2839#0" expanded="true" />
+            <element signature="e#2838#2839#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Bullet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="14" selection-start-line="33" selection-start-column="14" selection-end-line="33" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1078#1079#0" expanded="true" />
+            <element signature="e#1110#1111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/wyb/hitplane/model/Plane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0968921">
+          <caret line="99" column="60" selection-start-line="99" selection-start-column="60" selection-end-line="99" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -21,6 +21,13 @@ public class MainActivity extends AppCompatActivity implements GameListener, Vie
         gameView.setGameListener(this);
         findViewById(R.id.btn_pause).setOnClickListener(this);
         findViewById(R.id.btn_superPlane).setOnClickListener(this);
+        gameView.start();
+    }
+
+    @Override
+    protected void onPause() {
+        gameView.pause();
+        super.onPause();
     }
 
     @Override

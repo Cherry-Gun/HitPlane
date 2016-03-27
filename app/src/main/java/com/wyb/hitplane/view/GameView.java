@@ -1,16 +1,17 @@
 package com.wyb.hitplane.view;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.wyb.hitplane.model.Boss;
 import com.wyb.hitplane.model.Bullet;
 import com.wyb.hitplane.model.Enemy;
@@ -18,7 +19,7 @@ import com.wyb.hitplane.model.EnemyDismissListener;
 import com.wyb.hitplane.model.GameListener;
 import com.wyb.hitplane.model.Plane;
 import com.wyb.hitplane.model.Sky;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,6 +38,7 @@ public class GameView extends View implements EnemyDismissListener {
     private int score = 0;          //分数
     private boolean isRun = true;
     private GameListener lGame;
+    private MediaPlayer player;
 
     private Handler handler = new Handler() {
         @Override
@@ -69,12 +71,40 @@ public class GameView extends View implements EnemyDismissListener {
 
     public void pause() {
         isRun = false;
+        try {
+            if (player != null) {
+                player.pause();
+            }
+        } catch (IllegalStateException ex) {
+
+        }
     }
 
     public void resume() {
         isRun = true;
         handler.sendEmptyMessageDelayed(0, 100);
         lastBossTime = System.currentTimeMillis();
+        try {
+            if (player != null) {
+                player.start();
+            }
+        } catch (IllegalStateException ex) {
+
+        }
+    }
+
+    public void start() {
+        enemies.clear();  //清空敌机
+        passed.clear();
+        this.post(new Runnable() {
+            @Override
+            public void run() {
+                int x = getWidth() / 2;
+                int y = getHeight() - plane.getWidth() / 2;
+                plane.move(x, y);
+            }
+        });
+        resume();
     }
 
     public int getScore() {
@@ -90,7 +120,17 @@ public class GameView extends View implements EnemyDismissListener {
         enemies = new Vector<>();           //敌机
         passed = new ArrayList<>();         //摧毁的飞机
         random = new Random();
-        resume();                           //开始飞
+        //resume();                           //开始飞
+        player = new MediaPlayer();
+        try {
+            AssetFileDescriptor fileFd = context.getAssets().openFd("hitplane.mp3");
+            player.setDataSource(fileFd.getFileDescriptor(), fileFd.getStartOffset(), fileFd.getLength());
+            player.prepare();
+            player.setLooping(true);
+            player.start();
+        } catch (IllegalStateException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -106,7 +146,7 @@ public class GameView extends View implements EnemyDismissListener {
             enemies.add(enemy);
         }
         score += 2;
-        canvas.drawText("分数: " + score, 10, 20, paint);
+        canvas.drawText("分数: " + score, 100, 80, paint);
         if (System.currentTimeMillis() - lastBossTime >= 10000) {  //行驶了10000
             Boss boss = new Boss(getContext(), paint, getWidth(), getHeight());
             boss.setEnemyDismissListener(this);
@@ -165,6 +205,9 @@ public class GameView extends View implements EnemyDismissListener {
     }
 
     protected void onGameOver() {
+        if (player != null) {
+            player.release();
+        }
         if (lGame != null) {
             lGame.onGameOver();
         }

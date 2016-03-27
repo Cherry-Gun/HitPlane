@@ -77,19 +77,27 @@ public class Plane extends GameObject implements BulletDismissListener {
         bullets.add(bullet);
 
         if (isSuper) {      //火力全开
-            bullet = new Bullet(context, paint, bulletX - 50, bulletY);
+            bullet = new Bullet(context, paint, bulletX - 100, bulletY);
             bullet.setOnBulletDismiss(this);
             bullets.add(bullet);
 
-            bullet = new Bullet(context, paint, bulletX - 20, bulletY);
+            bullet = new Bullet(context, paint, bulletX - 60, bulletY);
             bullet.setOnBulletDismiss(this);
             bullets.add(bullet);
 
-            bullet = new Bullet(context, paint, bulletX + 20, bulletY);
+            bullet = new Bullet(context, paint, bulletX - 30, bulletY);
             bullet.setOnBulletDismiss(this);
             bullets.add(bullet);
 
-            bullet = new Bullet(context, paint, bulletX + 50, bulletY);
+            bullet = new Bullet(context, paint, bulletX + 30, bulletY);
+            bullet.setOnBulletDismiss(this);
+            bullets.add(bullet);
+
+            bullet = new Bullet(context, paint, bulletX + 60, bulletY);
+            bullet.setOnBulletDismiss(this);
+            bullets.add(bullet);
+
+            bullet = new Bullet(context, paint, bulletX + 100, bulletY);
             bullet.setOnBulletDismiss(this);
             bullets.add(bullet);
         }

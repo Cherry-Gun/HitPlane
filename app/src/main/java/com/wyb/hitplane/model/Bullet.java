@@ -31,16 +31,12 @@ public class Bullet extends GameObject{
 
     @Override
     public void draw(Canvas canvas) {
-        y -= 20;
+        y -= 200;
         if (y < 0) {
             onBulletPassed();
             return;
         }
         canvas.drawBitmap(getBitmap(), x, y, paint);
-    }
-
-    public int getWidth() {
-        return getBitmap().getWidth();
     }
 
     public void dismiss() {
