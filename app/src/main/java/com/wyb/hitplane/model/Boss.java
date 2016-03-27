@@ -27,10 +27,10 @@ public class Boss extends Enemy{
         bitmap[3] = BitmapFactory.decodeResource(context.getResources(), R.mipmap.boss3);
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-    }
+//    @Override
+//    public void draw(Canvas canvas) {
+//        super.draw(canvas);
+//    }
 
     @Override
     public void hited() {

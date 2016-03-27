@@ -10,12 +10,15 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
 import com.wyb.hitplane.model.Boss;
 import com.wyb.hitplane.model.Bullet;
 import com.wyb.hitplane.model.Enemy;
 import com.wyb.hitplane.model.EnemyDismissListener;
+import com.wyb.hitplane.model.GameListener;
 import com.wyb.hitplane.model.Plane;
 import com.wyb.hitplane.model.Sky;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,12 +35,16 @@ public class GameView extends View implements EnemyDismissListener {
     private Random random;
     private long lastBossTime;
     private int score = 0;          //分数
+    private boolean isRun = true;
+    private GameListener lGame;
 
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             GameView.this.invalidate();
-            sendEmptyMessageDelayed(0, 100);
+            if (isRun) {
+                sendEmptyMessageDelayed(0, 100);
+            }
         }
     };
 
@@ -56,6 +63,20 @@ public class GameView extends View implements EnemyDismissListener {
         init(context);
     }
 
+    public boolean isRunning() {
+        return isRun;
+    }
+
+    public void pause() {
+        isRun = false;
+    }
+
+    public void resume() {
+        isRun = true;
+        handler.sendEmptyMessageDelayed(0, 100);
+        lastBossTime = System.currentTimeMillis();
+    }
+
     public int getScore() {
         return score;
     }
@@ -65,12 +86,11 @@ public class GameView extends View implements EnemyDismissListener {
         paint.setColor(Color.RED);
         paint.setTextSize(80);
         sky = new Sky(context, paint);      //天空
-        plane = new Plane(context, paint);  //玩家
+        plane = new Plane(context, paint, handler);  //玩家
         enemies = new Vector<>();           //敌机
         passed = new ArrayList<>();         //摧毁的飞机
         random = new Random();
-        handler.sendEmptyMessageDelayed(0, 100);//开始飞
-        lastBossTime = System.currentTimeMillis();
+        resume();                           //开始飞
     }
 
     @Override
@@ -87,7 +107,7 @@ public class GameView extends View implements EnemyDismissListener {
         }
         score += 2;
         canvas.drawText("分数: " + score, 10, 20, paint);
-        if(System.currentTimeMillis() - lastBossTime >= 10000) {  //行驶了10000
+        if (System.currentTimeMillis() - lastBossTime >= 10000) {  //行驶了10000
             Boss boss = new Boss(getContext(), paint, getWidth(), getHeight());
             boss.setEnemyDismissListener(this);
             enemies.add(boss);
@@ -99,6 +119,7 @@ public class GameView extends View implements EnemyDismissListener {
         }
         for (Enemy item : enemies) {
             item.draw(canvas);
+            check(item);
         }
 
     }
@@ -116,9 +137,6 @@ public class GameView extends View implements EnemyDismissListener {
                 break;
             case MotionEvent.ACTION_MOVE:
                 plane.move(event.getX(), event.getY());
-                for (Enemy item : enemies) {  //实施打击！ TODO 修改只有玩家移动的时候子弹才能发挥作用
-                    check(item);
-                }
                 break;
         }
         return true;
@@ -128,8 +146,10 @@ public class GameView extends View implements EnemyDismissListener {
         RectF enemyRect = enemy.getRect();          //得到敌机的图像范围
         RectF planeRect = plane.getRect();          //得到玩家的图像范围
         if (enemyRect.intersect(planeRect)) {       //两个图像范围有重合（玩家与敌机相撞）
-            enemy.hited();                           //敌机爆炸
-            //TODO 玩家此时相当于无敌模式，不合情理
+            enemy.hited();                          //敌机爆炸
+            if (!plane.isSuper) {                   //不在火力全开模式下
+                onGameOver();                       //玩家才会死亡
+            }
         }
         for (Bullet bullet : plane.bullets) {
             RectF bulletRect = bullet.getRect();    //得到子弹的图像范围
@@ -138,6 +158,20 @@ public class GameView extends View implements EnemyDismissListener {
                 bullet.dismiss();
             }
         }
+    }
+
+    public void setGameListener(GameListener l) {
+        lGame = l;
+    }
+
+    protected void onGameOver() {
+        if (lGame != null) {
+            lGame.onGameOver();
+        }
+    }
+
+    public void superPlane() {
+        plane.superPlane();
     }
 
     @Override

@@ -45,6 +45,7 @@ public class Enemy extends GameObject{
         y += v;
         if (y > height) {       //敌机飞出了天空
             onEnemyPassed();    //就消失
+            return;
         }
         canvas.drawBitmap(getBitmap(), x, y, paint);
         if (status == bitmap.length - 1) { //敌机伤势等于5
